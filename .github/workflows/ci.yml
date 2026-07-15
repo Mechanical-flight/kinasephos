@@ -31,3 +31,9 @@ jobs:
         run: |
           python scripts/generate_demo_data.py --output data/processed/demo.csv
           python scripts/train.py --config configs/train_smoke.yaml
+      - name: Synthetic evaluation
+        run: python scripts/evaluate.py --config configs/evaluate.yaml
+      - name: Synthetic inference
+        run: python scripts/predict.py --input examples/demo_input.csv --output outputs/demo_predictions.csv
+      - name: Student-only export
+        run: python scripts/export_student.py --checkpoint outputs/smoke/best.pt --output outputs/export
