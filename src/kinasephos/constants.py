@@ -5,5 +5,6 @@ FAMILY_TO_ID = {"CMGC": 0, "AGC": 1, "TK": 2, "CAMK": 3}
 ID_TO_FAMILY = {value: key for key, value in FAMILY_TO_ID.items()}
 PAD_TOKEN = "<PAD>"
 UNK_TOKEN = "<UNK>"
+SEQUENCE_PAD_CHAR = "-"
 AMINO_ACIDS = tuple("ACDEFGHIKLMNPQRSTVWY")
 VOCAB = {PAD_TOKEN: 0, UNK_TOKEN: 1, **{aa: i + 2 for i, aa in enumerate(AMINO_ACIDS)}}
