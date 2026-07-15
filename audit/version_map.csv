@@ -1,0 +1,5 @@
+asset,observed_version_signal,relationship,decision
+Homo sapiens.fasta,none,standalone EPSD-like FASTA,requires verification
+PhosphoSitePlus(2).zip,"internal file dated 2024-06-15; EPSD schema",filename/schema conflict,do not merge as official PhosphoSitePlus
+uniprotkb_cc_ptm_Phosphorylation_AND_ke_2025_03_25.xlsx(2).gz,filename date 2025-03-25,standalone multi-organism workbook,metadata only
+

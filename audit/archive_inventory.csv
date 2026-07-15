@@ -1,0 +1,3 @@
+archive,member,compressed_size,uncompressed_size,compression_ratio,unsafe_path,possible_zip_bomb
+PhosphoSitePlus(2).zip,PhosphoSitePlus.txt,90941,524654,5.769,False,False
+uniprotkb_cc_ptm_Phosphorylation_AND_ke_2025_03_25.xlsx(2).gz,uniprotkb_cc_ptm_Phosphorylation_AND_ke_2025_03_25.xlsx(2),222005,226263,1.019,False,False
