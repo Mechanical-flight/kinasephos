@@ -1,6 +1,11 @@
 from dataclasses import dataclass
 
-from kinasephos.constants import CENTER_INDEX, PHOSPHO_RESIDUES, WINDOW_LENGTH
+from kinasephos.constants import (
+    CENTER_INDEX,
+    PHOSPHO_RESIDUES,
+    SEQUENCE_PAD_CHAR,
+    WINDOW_LENGTH,
+)
 
 
 @dataclass(frozen=True)
@@ -13,7 +18,7 @@ def build_window(
     sequence: str,
     position_1based: int,
     expected_residue: str | None = None,
-    padding: str = "X",
+    padding: str = SEQUENCE_PAD_CHAR,
 ) -> WindowResult:
     if len(padding) != 1:
         raise ValueError("Padding token must be one character")

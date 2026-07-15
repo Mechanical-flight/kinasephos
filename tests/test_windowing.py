@@ -6,7 +6,7 @@ def test_window_center_and_padding():
     assert result.status == "valid"
     assert len(result.window) == 61
     assert result.window[30] == "S"
-    assert result.window.startswith("X" * 29)
+    assert result.window.startswith("-" * 29)
 
 
 def test_window_rejects_mismatch():

@@ -65,9 +65,11 @@ terms. Do not place restricted exports in this repository. See [DATA_CARD.md](DA
 ## Teacher cache and deployment
 
 Full training expects offline ESM-2 embeddings. Cache manifests record model name, representation
-dimension, pooling rule, sample identity, and configuration hash. The teacher remains frozen and CI
-never downloads its 650M parameters. `scripts/export_student.py` exports a Student-only state dict,
-vocabulary, configuration, family mapping, and threshold.
+dimension, revision, pooling rule, input hash, sample/window identity, and configuration hash. Formal
+training fails closed when the cache is missing or stale; synthetic teacher vectors require the
+explicit smoke configuration. The teacher remains frozen and CI never downloads its 650M
+parameters. `scripts/export_student.py` exports a Student-only state dict, vocabulary, configuration,
+family mapping, and threshold.
 
 ## Evaluation
 
@@ -101,4 +103,3 @@ configuration, and reproducible evaluation output exist.
 
 Original code is MIT licensed. Data, model weights, and third-party tools retain their own terms. See
 `CITATION.cff` and `THIRD_PARTY_NOTICES.md`.
-

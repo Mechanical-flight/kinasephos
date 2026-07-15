@@ -1,5 +1,7 @@
 seed: 42
+synthetic_smoke: false
 data_path: data/processed/train.csv
+train_split: train
 teacher_cache: teacher_cache/esm2_t33_650M_UR50D
 output_dir: outputs/full
 device: auto
@@ -16,6 +18,8 @@ teacher:
   hidden_dim: 1280
   pooling: residue_only_mean
   frozen: true
+  batch_size: 8
+  shard_size: 256
 model:
   hidden_dim: 256
   heads: 8
@@ -27,4 +31,3 @@ loss:
   alpha: 1.0
   beta: 1.0
   lambda_distill: 1.0
-

@@ -5,6 +5,7 @@ from sklearn.metrics import (
     confusion_matrix,
     f1_score,
     matthews_corrcoef,
+    precision_recall_fscore_support,
     precision_score,
     recall_score,
     roc_auc_score,
@@ -41,6 +42,10 @@ def family_metrics(targets, probabilities) -> dict[str, object]:
         return {"status": "unavailable", "valid_samples": 0}
     top1 = probabilities.argmax(axis=1)
     top3 = np.argsort(probabilities, axis=1)[:, -3:]
+    precision, recall, f1, support = precision_recall_fscore_support(
+        targets, top1, labels=range(4), zero_division=0
+    )
+    names = ("CMGC", "AGC", "TK", "CAMK")
     return {
         "status": "available",
         "valid_samples": len(targets),
@@ -50,5 +55,14 @@ def family_metrics(targets, probabilities) -> dict[str, object]:
         ),
         "macro_f1": f1_score(targets, top1, average="macro", zero_division=0),
         "weighted_f1": f1_score(targets, top1, average="weighted", zero_division=0),
+        "per_class": {
+            name: {
+                "precision": float(precision[index]),
+                "recall": float(recall[index]),
+                "f1": float(f1[index]),
+                "support": int(support[index]),
+            }
+            for index, name in enumerate(names)
+        },
         "confusion_matrix": confusion_matrix(targets, top1, labels=range(4)).tolist(),
     }
