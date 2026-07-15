@@ -7,6 +7,7 @@ from torch.utils.data import DataLoader
 
 from kinasephos.data.collate import collate_sites
 from kinasephos.data.dataset import SiteDataset
+from kinasephos.data.teacher_cache import load_teacher_cache
 from kinasephos.models.kinasephos import KinasePhosModel
 from kinasephos.models.losses import MultiTaskDistillationLoss
 from kinasephos.training.checkpointing import save_checkpoint
@@ -25,7 +26,23 @@ def train_from_config(config_path: str) -> dict[str, object]:
     if device == "auto":
         device = "cpu"
     data_path = Path(config["data_path"])
-    dataset = SiteDataset.from_csv(data_path, synthetic_teacher=True)
+    split = config.get("train_split")
+    rows = SiteDataset.from_csv(data_path, split=split).rows
+    if not rows:
+        raise ValueError(f"No training samples found in {data_path} for split={split!r}")
+    synthetic_smoke = bool(config.get("synthetic_smoke", False))
+    if synthetic_smoke:
+        dataset = SiteDataset(rows, synthetic_teacher=True)
+    else:
+        cache_dir = config.get("teacher_cache")
+        if not cache_dir:
+            raise ValueError(
+                "Formal training requires teacher_cache; synthetic embeddings are allowed only "
+                "when synthetic_smoke: true is explicitly configured"
+            )
+        expected_dim = int(config.get("teacher", {}).get("hidden_dim", 1280))
+        embeddings = load_teacher_cache(cache_dir, rows, expected_hidden_dim=expected_dim)
+        dataset = SiteDataset(rows, teacher_embeddings=embeddings)
     loader = DataLoader(
         dataset,
         batch_size=int(config.get("batch_size", 128)),
@@ -70,7 +87,6 @@ def train_from_config(config_path: str) -> dict[str, object]:
             batches += 1
         row = {"epoch": epoch + 1, **{name: value / batches for name, value in totals.items()}}
         history.append(row)
-    config["synthetic_smoke"] = "demo" in data_path.name
     save_checkpoint(
         output_dir / "last.pt", model, optimizer, len(history), config, -history[-1]["total"]
     )
@@ -83,7 +99,7 @@ def train_from_config(config_path: str) -> dict[str, object]:
         writer.writerows(history)
     summary = {
         "status": "success",
-        "synthetic_smoke_only": config["synthetic_smoke"],
+        "synthetic_smoke_only": synthetic_smoke,
         "epochs": len(history),
         "samples": len(dataset),
         "duration_seconds": round(time.perf_counter() - start, 3),
