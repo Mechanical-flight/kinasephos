@@ -1,0 +1,30 @@
+seed: 42
+data_path: data/processed/train.csv
+teacher_cache: teacher_cache/esm2_t33_650M_UR50D
+output_dir: outputs/full
+device: auto
+batch_size: 128
+epochs: 20
+learning_rate: 0.001
+weight_decay: 0.01
+mixed_precision: true
+gradient_clip: 1.0
+early_stopping_patience: 5
+teacher:
+  model_name: facebook/esm2_t33_650M_UR50D
+  revision: main
+  hidden_dim: 1280
+  pooling: residue_only_mean
+  frozen: true
+model:
+  hidden_dim: 256
+  heads: 8
+  ffn_dim: 1024
+  layers: 4
+  projection_dim: 1280
+  dropout: 0.2
+loss:
+  alpha: 1.0
+  beta: 1.0
+  lambda_distill: 1.0
+

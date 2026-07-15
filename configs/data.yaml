@@ -1,0 +1,13 @@
+seed: 42
+reference_fasta: data/raw/reference.fasta
+positive_sites: data/raw/positive_sites.tsv
+kinase_relations: data/raw/kinase_substrate.tsv
+output_dir: data/processed
+organism: Homo sapiens
+window_length: 61
+padding_token: X
+negative_ratio: 2
+cdhit_identity: 0.4
+split_ratio: [0.8, 0.1, 0.1]
+require_cluster_disjoint: true
+

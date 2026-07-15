@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="150" viewBox="0 0 900 150">
+  <style>text{font-family:Arial,sans-serif;font-size:15px}.box{fill:#f8fbf7;stroke:#39734d;stroke-width:2}.line{stroke:#555;stroke-width:2}</style>
+  <rect class="box" x="10" y="45" width="130" height="55" rx="8"/><text x="34" y="78">Asset audit</text>
+  <line class="line" x1="140" y1="72" x2="180" y2="72"/><rect class="box" x="180" y="45" width="145" height="55" rx="8"/><text x="197" y="78">Site validation</text>
+  <line class="line" x1="325" y1="72" x2="365" y2="72"/><rect class="box" x="365" y="45" width="145" height="55" rx="8"/><text x="382" y="78">61-mer + labels</text>
+  <line class="line" x1="510" y1="72" x2="550" y2="72"/><rect class="box" x="550" y="45" width="145" height="55" rx="8"/><text x="571" y="78">CD-HIT split</text>
+  <line class="line" x1="695" y1="72" x2="735" y2="72"/><rect class="box" x="735" y="45" width="145" height="55" rx="8"/><text x="761" y="78">Train / eval</text>
+</svg>
+

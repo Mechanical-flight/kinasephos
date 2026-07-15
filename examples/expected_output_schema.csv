@@ -1,0 +1,2 @@
+sample_id,protein_id,protein_accession,position_1based,center_residue,window_61,phospho_logit,phospho_probability,binary_prediction,binary_threshold,family_top1,family_top1_probability,family_top3,prob_CMGC,prob_AGC,prob_TK,prob_CAMK,model_version
+

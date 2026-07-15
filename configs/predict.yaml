@@ -1,0 +1,6 @@
+checkpoint: outputs/smoke/best.pt
+input: examples/demo_input.csv
+output: outputs/predictions.csv
+threshold: 0.5
+device: auto
+

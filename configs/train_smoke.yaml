@@ -1,0 +1,22 @@
+seed: 42
+data_path: data/processed/demo.csv
+output_dir: outputs/smoke
+device: cpu
+batch_size: 8
+epochs: 1
+learning_rate: 0.001
+weight_decay: 0.01
+gradient_clip: 1.0
+early_stopping_patience: 3
+model:
+  hidden_dim: 256
+  heads: 8
+  ffn_dim: 1024
+  layers: 4
+  projection_dim: 1280
+  dropout: 0.2
+loss:
+  alpha: 1.0
+  beta: 1.0
+  lambda_distill: 1.0
+

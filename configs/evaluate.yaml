@@ -1,0 +1,5 @@
+data_path: data/processed/demo.csv
+checkpoint: outputs/smoke/best.pt
+output_dir: outputs/evaluation
+threshold: 0.5
+
