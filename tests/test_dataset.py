@@ -10,3 +10,10 @@ def test_dataset_encoding():
         synthetic_teacher=True,
     )
     assert dataset[0]["teacher_embedding"].shape == (1280,)
+
+
+def test_padding_and_unknown_residue_have_distinct_ids():
+    window = "-" * 29 + "X" + "S" + "A" * 30
+    tokens = encode_window(window)
+    assert tokens[0].item() == 0
+    assert tokens[29].item() == 1
