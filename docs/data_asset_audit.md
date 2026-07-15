@@ -13,3 +13,6 @@ No byte-identical files, unreadable files, obvious secret filenames, model weigh
 found among the four supplied top-level assets. The misleading archive/workbook names require
 conservative lineage handling. Formal binary and family training remain `TBD`.
 
+The later architecture PDF and project presentation are specification/provenance inputs, not
+training data. Their fingerprints and conflict resolution are recorded in
+[source_material_audit.md](source_material_audit.md).
