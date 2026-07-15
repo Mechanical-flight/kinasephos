@@ -4,8 +4,7 @@ message: "If you use this clean-room implementation, cite this repository and it
 type: software
 authors:
   - family-names: Chen
-    given-names: CZY
+    given-names: Ziyuan
 version: 0.1.0
-date-released: 2026-07-14
+date-released: 2026-07-15
 license: MIT
-
