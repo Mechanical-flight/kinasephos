@@ -7,7 +7,7 @@ kinase groups from a 61-residue local sequence. It combines a frozen ESM-2 repre
 with a deployable Student Transformer. This repository started with no source code, checkpoint, or
 reproducible training log; historical presentation figures are therefore **not yet reproduced**.
 
-> Status: the software and synthetic CPU smoke path are implemented. The uploaded historical assets
+> Status: the software and synthetic CPU smoke path are implemented. The supplied historical assets
 > were audited conservatively and are not sufficient for a provenance-verified formal training run.
 > No raw database export, teacher weight, embedding cache, or checkpoint is committed.
 
