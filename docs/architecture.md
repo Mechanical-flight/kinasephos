@@ -8,3 +8,11 @@ The Student produces `B x 61 x 256`, mask-pools to `B x 256`, and projects to `B
 consume that projected representation. An all-missing family batch yields a differentiable zero
 family loss instead of NaN.
 
+Sequence-edge padding uses the reserved `-` character and maps to vocabulary ID 0. A biological `X`
+maps to the unknown-residue ID instead, so the Student attention mask excludes only true padding.
+The teacher strips boundary padding before ESM tokenization and rejects internal padding.
+
+The exact two-page architecture specification takes precedence over the presentation narrative. In
+particular, both deployed heads consume the projected Student representation and the distillation
+target is the teacher's residue-only pooled 1280-vector. See
+[source_material_audit.md](source_material_audit.md).
